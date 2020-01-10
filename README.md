@@ -42,6 +42,8 @@ Here is an example of basic config, and a bit of a run down on each of the prope
 - **bucket**: The name of the bucket to search for files under.
 - **external_id**: (potentially optional) Running this locally, you should be able to omit this property, it is provided to allow the tap to access buckets in accounts where the user doesn't have access to the account itself, but is able to assume a role in that account, through a shared secret. This is that secret, in that case.
 - **tables**: An escaped JSON string that the tap will use to search for files, and emit records as "tables" from those files. Will be used by a [`voluptuous`](https://github.com/alecthomas/voluptuous)-based configuration checker.
+- **encryption_type** - The type of encryption to use. Current supported options are: 'none' and 'KMS'. (Default = 'none')
+- **encryption_key** - A reference to the encryption key to use for dencryption. For KMS encryption, this should be the name of the KMS encryption key. (This field is ignored if 'encryption_type' is none or blank.)
 
 The `table` field consists of one or more objects, JSON encoded as an array and escaped using backslashes (e.g., `\"` for `"` and `\\` for `\`), that describe how to find files and emit records. A more detailed (and unescaped) example below:
 
